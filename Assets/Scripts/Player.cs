@@ -55,6 +55,7 @@ public class Player : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHa
                 Vector3 globalMousePos;
                 if (RectTransformUtility.ScreenPointToWorldPointInRectangle(rectTrans, eventData.position, eventData.pressEventCamera, out globalMousePos))
                 {
+                    //set the player to the mouse position, but capped within the edges of the screen 
                     rectTrans.position = new Vector3(
                         Mathf.Clamp(globalMousePos.x, 0, Screen.width),
                         Mathf.Clamp(globalMousePos.y, 0, Screen.height));

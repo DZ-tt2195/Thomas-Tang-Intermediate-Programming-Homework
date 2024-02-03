@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public enum TypeOfCollectible { Jewel, Spike};
-    [SerializeField] TypeOfCollectible thisType;
+    public enum TypeOfCollectible { Jewel, Spike}; 
+    [SerializeField] TypeOfCollectible thisType; //the type of collectible this is
 
     Vector3 startingPos; //where this started;
     Vector3 endingPos; //where this ends;
@@ -13,10 +13,14 @@ public class Collectible : MonoBehaviour
     float movementTimer = 0f; //how long this has been moving for
     float movementDuration; //how long it should take for this to move
 
+    /// <summary>
+    /// make this collectible start moving
+    /// </summary>
+    /// <param name="time">how long before this hits the ground</param>
     public void StartMoving(float time)
     {
-        startingPos = transform.localPosition;
-        endingPos = new Vector3(startingPos.x, Screen.height/-2 - 100);
+        startingPos = transform.localPosition; //remember the starting position
+        endingPos = new Vector3(startingPos.x, Screen.height/-2 - 100); //ending position is just below the bottom of the screen
         movementDuration = time; //set the movement timer
     }
 
@@ -31,7 +35,7 @@ public class Collectible : MonoBehaviour
 
         if (this.transform.localPosition == endingPos) //if this reaches the target
         {
-            if (thisType == TypeOfCollectible.Jewel) //missed a jewel
+            if (thisType == TypeOfCollectible.Jewel) //you missed a jewel
                 Manager.instance.missedJewels++;
 
             Destroy(this.gameObject); //destroy this

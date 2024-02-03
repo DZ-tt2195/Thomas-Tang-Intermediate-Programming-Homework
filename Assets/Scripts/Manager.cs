@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {
     public static Manager instance; //static reference for the manager
-    Canvas canvas;
+    Canvas canvas; //the canvas
     [SerializeField] TMP_Text textBox; //text for data
 
-    [SerializeField] Collectible jewelPrefab;
-    [SerializeField] Collectible spikePrefab;
+    [SerializeField] Collectible jewelPrefab; //jewel
+    [SerializeField] Collectible spikePrefab; //spike
 
     [HideInInspector] public int missedJewels = 0; //number of jewels that missed
 
@@ -20,13 +20,13 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        instance = this; //set instance
+        canvas = FindObjectOfType<Canvas>(); //find the canvas
     }
 
     private void Start()
     {
         Application.targetFrameRate = 60; //cap at 60fps
-        canvas = FindObjectOfType<Canvas>(); //find the canvas
         DropCollectible(); //immediately drop a collectible
     }
 
@@ -40,6 +40,9 @@ public class Manager : MonoBehaviour
         (Screen.width / -2, Screen.width / 2), Screen.height / 2 + 100, 0);
     }
 
+    /// <summary>
+    /// drop a collectible from the top of the screen
+    /// </summary>
     void DropCollectible()
     {
         difficulty = Player.instance.score < 5 ? 0 : Player.instance.score / 5; //change difficulty based on score, minimum 0

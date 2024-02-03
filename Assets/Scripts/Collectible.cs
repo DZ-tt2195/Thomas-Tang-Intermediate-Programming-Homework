@@ -25,8 +25,8 @@ public class Collectible : MonoBehaviour
         if (movementDuration > 0) //if movement timer is above 0
         {
             //use the ease in function from https://easings.net/
-            movementTimer = Mathf.Min(1, movementTimer + (Time.deltaTime / movementDuration));
-            transform.localPosition = startingPos + (endingPos - startingPos) * (1 - Mathf.Cos(movementTimer * Mathf.PI / 2));
+            movementTimer = Mathf.Min(1, movementTimer + (Time.deltaTime / movementDuration)); //slowed down by movement duration
+            transform.localPosition = startingPos + (endingPos - startingPos) * (1 - Mathf.Cos(movementTimer * Mathf.PI / 2)); //set position
         }
 
         if (this.transform.localPosition == endingPos) //if this reaches the target
